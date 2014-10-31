@@ -2,6 +2,7 @@
 *.pydevproject
 .project
 .metadata
+.recommenders
 bin/**
 
 ## Ignore Visual Studio temporary files, build results, and
