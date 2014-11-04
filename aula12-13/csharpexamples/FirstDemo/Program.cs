@@ -80,6 +80,9 @@ namespace Delegates
             d3 += d4;
             ShowAll(new int[] { 1, 2, 3 }, d3);
 
+            for (int i = d3.GetInvocationList().Length - 1; i >= 0; --i )
+                ((Display) (d3.GetInvocationList()[i])).Invoke(45);
+
             //Display singleDisplay = (Display) Delegate.Remove(multipleDisplay, d4);
             d3 -= d4;
             ShowAll(new int[] { 1, 2, 3 }, d3);
