@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace tpc_13
 {
@@ -28,7 +24,9 @@ namespace tpc_13
     public class Thermostat
     {
         private int currTemperature;
+
         public event TemperatureChangeHandler TemperatureChanged;
+        
         virtual protected void OnTemperatureChanged(TemperatureChangedEventArgs args)
         {
             if (TemperatureChanged != null)
