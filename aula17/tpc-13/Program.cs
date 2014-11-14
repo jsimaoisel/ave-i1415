@@ -36,7 +36,9 @@ namespace tpc_13
         }
         public int Temperature
         {
-            set {
+            get { return currTemperature; }
+            set
+            {
                 TemperatureChangedEventArgs args = new TemperatureChangedEventArgs(currTemperature, value);
                 currTemperature = value;
                 OnTemperatureChanged(args);
@@ -62,6 +64,7 @@ namespace tpc_13
             thermo.Temperature = 2;
             thermo.Temperature = 10;
             thermo.Temperature = 11;
+            Console.WriteLine("Current temperature is " + thermo.Temperature);
         }
     }
 }
