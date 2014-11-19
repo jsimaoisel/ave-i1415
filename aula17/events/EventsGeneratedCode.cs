@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace events
 {
 
-    class ExplicitEvent
+    class EventsGeneratedCode
     {
         // this code in C#...
-        
-        //public MailHandler NewMail; 
+
+        //public event MailHandler NewMail; 
 
         // ... produces the following code in IL (plus a metadata entry)
 
@@ -25,9 +21,3 @@ namespace events
 
 
 }
-
-
-
-
-
-
