@@ -59,11 +59,32 @@ namespace GenericAlgorithms_Iterators
         }
         #endregion
 
+        // apresentado na aula 19
+        #region V3
+        public static void v3() 
+        {
+            List<Student> list = new List<Student>();
+            list.Add(new Student { Name = "jose", Number = 1234, CurrAverage = 12.5 });
+            list.Add(new Student { Name = "maria", Number = 1023, CurrAverage = 18.1 });
+            list.Add(new Student { Name = "ana", Number = 1223, CurrAverage = 17.3 });
+            list.Add(new Student { Name = "rui", Number = 1123, CurrAverage = 15.1 });
+            
+            // filtras, mostrar resultado
+            list.Filter(x => x.CurrAverage > 15)
+                .ForEach(x => Console.Write(x + ", "));
+
+            list.Filter(x => x.CurrAverage > 10)
+                .First();
+        }
+        #endregion
+
         static void Main(string[] args)
         {
             v1();
 
             v2();
+
+            v3();
         }
     }
 }

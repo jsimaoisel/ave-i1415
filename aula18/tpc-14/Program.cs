@@ -32,15 +32,18 @@ namespace tpc_14
 
     class C : B
     {
+        private EventHandler observers;
         public override event EventHandler MyEvent
         {
             add
             {
+                observers += value;
                 Console.WriteLine("I'm on C.MyEvent.add");
             }
             remove
             {
-                Console.WriteLine("I'm on C.MyEvent.add");
+                observers -= value;
+                Console.WriteLine("I'm on C.MyEvent.remove");
             }
         }
     }
@@ -63,7 +66,7 @@ namespace tpc_14
             //a.MyEvent();
             a.SimulateEvent(a, new EventArgs());
             b.SimulateEvent(b, new EventArgs());
-            c.SimulateEvent(c, new EventArgs());
+            b.SimulateEvent(c, new EventArgs());
         }
 
         static void GenericObserver(object sender, EventArgs e)
@@ -71,6 +74,7 @@ namespace tpc_14
             Console.WriteLine("Event produced by object {0} whose type is {1}", 
                 sender.GetHashCode(),
                 sender.GetType());
+
         }
     }
 }
