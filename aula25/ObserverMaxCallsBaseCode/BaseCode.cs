@@ -12,8 +12,13 @@ namespace ObserversMaxCalls
         {
             Counter c = new Counter();
             c.CounterEvent += B.ConsoleHandler;
-            c.CounterEvent += C.MboxHandler;
-            c.DoIt(5, 10);
+            //c.CounterEvent += C.MboxHandler;
+            c.DoIt(5, 6);
+            c.DoIt(50, 60);
+            c.DoIt(500, 600);
+            c.DoIt(15, 16);
+            c.DoIt(25, 36);
+
         }
     }
 
@@ -65,9 +70,21 @@ namespace ObserversMaxCalls
         // por cada iteração de <from> até <to>.
         public void DoIt(int from, int to)
         {
-            for (int i = from; i <= to; i++)
+            foreach (Observer h in CounterEvent.GetInvocationList())
             {
-                NotifyObservers(i);
+                if (h != null)
+                {
+                    ObserverHandlerAttribute attr =
+                        (ObserverHandlerAttribute)h.Method.GetCustomAttribute(typeof(ObserverHandlerAttribute), false);
+                    for (int i = from; i <= to; i++)
+                    {
+                        if (attr != null && attr.MaxCalls > 0)
+                        {
+                            attr.MaxCalls--;
+                            h(i); // <=> h.Invoke(n);
+                        }
+                    }
+                }
             }
         }
     }

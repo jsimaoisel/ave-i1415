@@ -12,6 +12,12 @@ namespace ObserversMaxCalls
             MessageBox.Show("Item = " + value);
         }
 
+        [ObserverHandler(MaxCalls = 10)]
+        public static void MboxHandler2(int value)
+        {
+            MessageBox.Show("Item = " + value);
+        }
+
     }
 
     public class B
