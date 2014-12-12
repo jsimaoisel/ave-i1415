@@ -76,7 +76,9 @@ namespace Revisoes_Ficha2
         }
 
 
-        /* delegates, lambdas, reflection */
+        /* 
+         * delegates, lambdas, eventos, reflection 
+         */
         public static Action<int> CreateActionWithMethodInfo_Lambda(Object target, MethodInfo mi)
         {
             return (x) => mi.Invoke(target, new Object[] { x });
@@ -85,6 +87,33 @@ namespace Revisoes_Ficha2
         {
             return (Action<int>) Delegate.CreateDelegate(typeof(Action<int>), target, mi);
         }
+
+        class A
+        {
+            public delegate void MyHandler();
+            public event MyHandler MyEvent
+            {
+                // entra em loop infinito
+                add
+                {
+                    MyEvent += value;
+                }
+                remove
+                {
+                    MyEvent -= value;
+                }
+            }
+        }
+
+        static class App
+        {
+            static void Foo() { Console.WriteLine("Foo"); }
+            static void Test()
+            {
+                A a = new A();
+                a.MyEvent += Foo;
+            }
+        } 
 
 
     }
